@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const requestAccessToken = async () => {
+  console.log(process.env.REACT_APP_KEY)
   const auth = {
     grant_type: "client_credentials",
     client_id: process.env.REACT_APP_KEY,
@@ -13,33 +14,6 @@ export const requestAccessToken = async () => {
   }
   localStorage.setItem("access_token", JSON.stringify(accessToken))
   return accessToken;
-}
-
-const getType = () => {
-  let accessToken = JSON.parse(localStorage.getItem("access_token"));
-  return axios({
-    method: "GET",
-    url: "https://api.petfinder.com/v2/types",
-    headers: {
-      "Authorization": `Bearer ${accessToken.token}`
-    }
-  }).then((res) => {
-    console.log(res.data)
-  })
-}
-
-const getBreeds = (type) => {
-  let accessToken = JSON.parse(localStorage.getItem("access_token"));
-  return axios({
-    method: "GET",
-    url: `https://api.petfinder.com/v2/types/${type}/breeds`,
-    headers: {
-      "Authorization": `Bearer ${accessToken.token}`
-    }
-  }).then((res) => {
-    const allBreeds = res.data.breeds.map((breed, i) => ({id: i, name: breed.name}))
-    console.log(JSON.stringify(allBreeds))
-  })
 }
 
 export const requestData = async (page, type, location, extraParams = {}) => {
