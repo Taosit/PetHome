@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export const requestAccessToken = async () => {
-  console.log(process.env.REACT_APP_KEY)
   const auth = {
     grant_type: "client_credentials",
     client_id: process.env.REACT_APP_KEY,
@@ -19,9 +18,7 @@ export const requestAccessToken = async () => {
 export const requestData = async (page, type, location, extraParams = {}) => {
   type = !type || type === "" ? "Dog" : type;
   location = !location || location === "" ? "Vancouver, British Columbia" : location;
-  console.log(extraParams);
   let accessToken = JSON.parse(localStorage.getItem("access_token"));
-  console.log({type, location, page, accessToken})
   if (!accessToken || Date.now() > accessToken.expirationTime) {
     console.log("requesting token")
     accessToken = await requestAccessToken();

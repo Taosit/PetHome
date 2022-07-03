@@ -5,12 +5,13 @@ import PetModal from "./components/PetModal";
 import {requestData} from "./utils/requests";
 import filterIcon from "./assets/filter.png"
 import FilterModal from "./components/filterModal";
+import ErrorMessage from "./components/ErrorMessage";
 
 function App() {
   const [pets, setPets] = useState(null)
   const [viewedPet, setViewedPet] = useState(null)
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false)
+  const [error, setError] = useState({hasError: false, errorMessage: ""})
   const [hasMore, setHasMore] = useState(true)
   const [pageNumber, setPageNumber] = useState(1)
   const [formData, setFormData] = useState({type: "", location: ""})
@@ -41,21 +42,15 @@ function App() {
         setPets(response.data.animals);
         setHasMore(pageNumber < response.data.pagination.total_pages)
         setLoading(false)
+        setError({hasError: false, errorMessage: ""})
       } catch (e) {
         console.log(e)
         setLoading(false)
-        setError(true)
+        setError({hasError: true, errorMessage: "Initial load failed."})
       }
     }
     handlePageLoad()
   }, [])
-
-  useEffect(() => {
-    if (formData.type !== "" || formData.location !== "") {
-      setPets(null)
-      setFilteredPets(null)
-    }
-  }, [formData])
 
   useEffect(() => {
     if (pageNumber === 1) return
@@ -69,9 +64,10 @@ function App() {
         }
         setHasMore(pageNumber < response.data.pagination.total_pages)
         setLoading(false)
+        setError({hasError: false, errorMessage: ""})
       } catch (e) {
         setLoading(false)
-        setError(true)
+        setError({hasError: true, errorMessage: "Cannot load new page."})
       }
     }
     handlePageLoad()
@@ -80,18 +76,17 @@ function App() {
   const handleScroll = (e) => {
     const {scrollTop, scrollHeight, clientHeight} = e.currentTarget;
     if (scrollHeight - scrollTop - clientHeight < 5) {
-      console.log("scrolled to bottom", "hasMore:", hasMore)
       if (!hasMore) return
       setPageNumber(prev => prev + 1);
     }
   }
 
-  if (error) return <h1>Error</h1>
-
-  if (loading) return <h1>Loading...</h1>
+  // if (loading) return <div className="loading-page">
+  //   <div className="loader"></div>
+  // </div>
 
   return (
-    <div className="page" ref={containerRef} onScroll={(e) => handleScroll(e)}>
+    <div className="result-page" ref={containerRef} onScroll={(e) => handleScroll(e)}>
     <div className="container" >
       <div className="search-bar-container">
         <Search setPets={setPets} setLoading={setLoading} setError={setError} setHasMore={setHasMore} setFilteredPets={setFilteredPets} containerRef={containerRef}
@@ -103,11 +98,16 @@ function App() {
           <img src={filterIcon} alt="filter"/>
         </div>}
       </div>
-      {pets && <PetList pets={filteredPets || pets} hasMore={hasMore} setViewedPet={setViewedPet} loading={loading}/>}
-      {viewedPet && <PetModal viewedPet={viewedPet} setViewedPet={setViewedPet}/>}
-      {filterModalOpen && <FilterModal setFilterModalOpen={setFilterModalOpen} formData={formData} setFilteredPets={setFilteredPets}
-                                       setHasMore={setHasMore} setLoading={setLoading} setError={setError} pageNumber={pageNumber} setPageNumber={setPageNumber}
-                                       extraSearchParams={extraSearchParams} setExtraSearchParams={setExtraSearchParams}/>}
+      <div className="content">
+        {loading && <div className="loading-page"><div className="loader"></div></div>}
+        {error.hasError && <ErrorMessage message={error.errorMessage} />}
+        {pets && !error.hasError && <PetList pets={filteredPets || pets} hasMore={hasMore} setViewedPet={setViewedPet} loading={loading}/>}
+        {viewedPet && <PetModal viewedPet={viewedPet} setViewedPet={setViewedPet}/>}
+        {filterModalOpen && <FilterModal setFilterModalOpen={setFilterModalOpen} formData={formData}
+                                         setFilteredPets={setFilteredPets} setHasMore={setHasMore} setLoading={setLoading}
+                                         setError={setError} pageNumber={pageNumber} setPageNumber={setPageNumber}
+                                         extraSearchParams={extraSearchParams} setExtraSearchParams={setExtraSearchParams}/>}
+      </div>
     </div>
     </div>
   );

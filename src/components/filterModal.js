@@ -111,7 +111,7 @@ function FilterModal({setFilterModalOpen, formData, setFilteredPets, setHasMore,
       <div className="filter-modal">
         <span className="close"
               onClick={() => setFilterModalOpen(false)}
-        >x</span>
+        >&times;</span>
         <div className="radio-group">
           <h3 className="group-title">Breed</h3>
           <button className={`option ${filters.breed === "all" ? "selected" : ""}`} id="all"

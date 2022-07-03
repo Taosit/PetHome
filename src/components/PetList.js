@@ -27,11 +27,11 @@ function PetList({pets, setViewedPet}) {
       {pets.map((pet, i) => (
         <div className="pet-container" key={i}>
           <div className="small-img-container">
-            {pet.photos[0] && <img src={pet.photos[0].small} alt="pet"/>}
+            {pet.photos[0] && <img src={pet.photos[0].small} onClick={() => handleClick(pet)} alt="pet"/>}
           </div>
           <div className="pet-info">
             <div className="details">
-              <h4>{pet.name}</h4>
+              <h4  onClick={() => handleClick(pet)}>{pet.name}</h4>
               <button className="details-button"
                       onClick={() => handleClick(pet)}
               >Details</button>
