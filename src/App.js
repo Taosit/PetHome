@@ -10,7 +10,7 @@ import ErrorMessage from "./components/ErrorMessage";
 function App() {
   const [pets, setPets] = useState(null)
   const [viewedPet, setViewedPet] = useState(null)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [error, setError] = useState({hasError: false, errorMessage: ""})
   const [hasMore, setHasMore] = useState(true)
   const [pageNumber, setPageNumber] = useState(1)
@@ -80,10 +80,6 @@ function App() {
       setPageNumber(prev => prev + 1);
     }
   }
-
-  // if (loading) return <div className="loading-page">
-  //   <div className="loader"></div>
-  // </div>
 
   return (
     <div className="result-page" ref={containerRef} onScroll={(e) => handleScroll(e)}>

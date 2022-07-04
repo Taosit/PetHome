@@ -9,10 +9,10 @@ function Search({pageNumber, setPageNumber, setPets, setLoading, setHasMore, set
 
   useEffect(() => {
     if (showSearchBar) {
-      formRef.current.classList.remove("form-body-hidden")
-      containerRef.current.style.paddingTop = "102px";
+      !formRef.current.classList.contains("form-body-show") && formRef.current.classList.add("form-body-show")
+      containerRef.current.style.paddingTop = "108px";
     } else {
-      !formRef.current.classList.contains("form-body-hidden") && formRef.current.classList.add("form-body-hidden")
+      formRef.current.classList.remove("form-body-show")
       containerRef.current.style.paddingTop = "0";
     }
   }, [showSearchBar])
@@ -52,7 +52,7 @@ function Search({pageNumber, setPageNumber, setPets, setLoading, setHasMore, set
       <div className="title">
         <h2 className="brand-name">Find A Pet</h2>
       </div>
-      <div className="form-body form-body-hidden" ref={formRef}>
+      <div className="form-body" ref={formRef}>
         <div className="input-group">
           <label htmlFor="type">Pet: </label>
           <select name="type" id="type" value={formData?.type} onChange={(e) => handleChange(e)}>
@@ -73,7 +73,7 @@ function Search({pageNumber, setPageNumber, setPets, setLoading, setHasMore, set
                  onChange={(e) => handleChange(e)}
           />
         </div>
-        <button className="search-button">Search</button>
+        <button className="button search-button">Search</button>
       </div>
       <button type="button" className="nav-toggle" onClick={(e) => setShowSearchBar(prev => !prev)}>
         <span className="hamburger"></span>

@@ -36,10 +36,10 @@ function PetList({pets, setViewedPet}) {
                       onClick={() => handleClick(pet)}
               >Details</button>
             </div>
-            <p>Age: {pet.age}</p>
-            <p>Gender: {pet.gender}</p>
-            <p>Breed: {getPetBreeds(pet.breeds)}</p>
-            <p>Status: {pet.status}</p>
+            <p><b>Age</b>: {pet.age}</p>
+            <p><b>Gender</b>: {pet.gender}</p>
+            <p><b>Breed</b>: {getPetBreeds(pet.breeds)}</p>
+            <p><b>Status</b>: {pet.status}</p>
           </div>
         </div>
       ))}
