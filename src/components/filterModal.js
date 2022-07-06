@@ -181,7 +181,9 @@ function FilterModal({setFilterModalOpen, formData, setFilteredPets, setHasMore,
           <button className={`option ${filters.environments.cats ? "selected" : ""}`}  id="cats"
                   onClick={() => changeFilter("environments", "cats")}>Cats</button>
         </div>
-        <button className="button filter-button" onClick={e => filterPets(e)}>Search</button>
+        <div className="button-container">
+          <button className="button filter-button" onClick={e => filterPets(e)}>Search</button>
+        </div>
       </div>
     </div>
   );

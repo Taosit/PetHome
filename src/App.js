@@ -3,7 +3,8 @@ import Search from "./components/Search";
 import PetList from "./components/PetList";
 import PetModal from "./components/PetModal";
 import {requestData} from "./utils/requests";
-import filterIcon from "./assets/filter.png"
+import settingContainerIcon from "./assets/setting-container.png"
+import settingIcon from "./assets/settings.png"
 import FilterModal from "./components/filterModal";
 import ErrorMessage from "./components/ErrorMessage";
 
@@ -87,12 +88,12 @@ function App() {
       <div className="search-bar-container">
         <Search setPets={setPets} setLoading={setLoading} setError={setError} setHasMore={setHasMore} setFilteredPets={setFilteredPets} containerRef={containerRef}
                 pageNumber={pageNumber} setPageNumber={setPageNumber} formData={formData} setFormData={setFormData}/>
-        {showFilterIcon && <div className="filter-image-container"
-             onClick={() => setFilterModalOpen(true)}
-             style={{display: `${pets || filteredPets ? "block" : "none"}`}}
-        >
-          <img src={filterIcon} alt="filter"/>
-        </div>}
+        {showFilterIcon &&
+          <><img src={settingContainerIcon} className="filter-container-image" alt="filter"
+                                onClick={() => setFilterModalOpen(true)} hidden={!(pets || filteredPets)}/>
+            <img src={settingIcon} className="filter-image" hidden={!(pets || filteredPets)}
+                 onClick={() => setFilterModalOpen(true)}/>
+          </>}
       </div>
       <div className="content">
         {loading && <div className="loading-page"><div className="loader"></div></div>}

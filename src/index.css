@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 :root {
-  --option-color: #3d3867;
+  --primary-color: #d25497;
+  --nav-color: rgba(133,0,91,1);
+  --option-color: #ab0075;
 }
 
 body {
@@ -15,6 +17,7 @@ body {
 }
 
 .result-page {
+  background-image: linear-gradient(125deg, rgba(255, 105, 180, 0.3), hotpink);
   overflow-y: auto;
   transition: 0.2s;
 }
@@ -63,22 +66,34 @@ h1 {
   align-items: center;
 }
 
-.filter-image-container {
+.filter-container-image {
   position: absolute;
-  bottom: -45px;
-  right: 15px;
+  bottom: -75px;
+  right: 25px;
   cursor: pointer;
-  width: 39px;
-  height: 39px;
-  padding: 2px;
-  border: 2px solid black;
-  background-color: white;
-  border-radius: 2em;
+}
+
+.filter-image {
+  position: absolute;
+  bottom: -70px;
+  right: 32px;
+  cursor: pointer;
+}
+
+.filter-container-image:hover + .filter-image {
+  animation: spin 3s infinite;
+}
+
+.filter-image:hover {
+  animation: spin 3s linear infinite;
 }
 
 .search-bar {
   width: 100%;
-  background-color: black;
+  background-image: linear-gradient(125deg, var(--nav-color) 38%, rgb(148, 13, 135) 40%,
+  var(--nav-color) 42%, var(--nav-color) 74%, rgb(140, 8, 110) 75%, var(--nav-color) 76%);
+  background-size: 400%;
+  animation: shine 5s infinite;
   color: white;
   padding: 1em 2em;
   display: flex;
@@ -86,6 +101,15 @@ h1 {
   align-items: center;
   border-radius: 0 0 0.8em 0.8em;
   position: relative;
+}
+
+@keyframes shine {
+  0% {
+    background-position-x: right;
+  }
+  100% {
+    background-position-x: left;
+  }
 }
 
 .brand-name {
@@ -124,8 +148,12 @@ input {
 }
 
 .button {
-  background-color: white;
+  background-image: linear-gradient(125deg, var(--nav-color) 49%, rgba(133, 0, 91, 0.7) 50%);
   border-radius: 0.2em;
+  background-size: 300%;
+  background-position: left;
+  border: 1px solid white;
+  color: white;
   font-size: 1.1em;
   height: 30px;
   padding: 0.2em 0.8em;
@@ -135,8 +163,11 @@ input {
 }
 
 .button:hover {
-  opacity: 0.9;
-  box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, 0.3);
+  background-position: center;
+}
+
+.button:active {
+  background-position: right;
 }
 
 .nav-toggle {
@@ -170,7 +201,7 @@ input {
   display: block;
   margin: 0 auto;
   height: 3px;
-  background: black;
+  background: var(--nav-color);
 }
 
 .hamburger::before,
@@ -209,11 +240,11 @@ input {
 
 .pet-container {
   display: flex;
+  background-color: white;
   align-items: center;
   padding: 0.3em;
-  border: 2px solid black;
   border-radius: 1em;
-  box-shadow: 2px 5px 2px rgba(0,0,0,0.3);
+  box-shadow: 2px 5px 5px 1px rgba(183, 0, 105, 0.3);
 }
 
 .small-img-container {
@@ -231,25 +262,6 @@ input {
 
 .pet-container h4:hover {
   text-decoration: underline;
-}
-
-.details {
-  display: flex;
-  align-items: center;
-}
-
-.details-button {
-  height: 25px;
-  margin-left: 1em;
-  border: 1px solid #000000;
-  border-radius: 1em;
-  background-color: white;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-.details-button:hover {
-  box-shadow: 1px 3px 2px rgba(0, 0, 0, 0.13);
 }
 
 /* Pet Page */
@@ -390,16 +402,17 @@ li p {
   color: white;
 }
 
-.filter-button {
-  width: max(100px, 20%);
-  border: 2px solid black;
-  align-self: center;
-  margin: 1em;
+.button-container {
+  margin: 1.5em;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.filter-button:active {
-  background-color: black;
-  color: white;
+.filter-button {
+  width: max(100px, 20%);
+  height: 35px;
 }
 
 /* Error */

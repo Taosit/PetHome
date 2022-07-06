@@ -1,4 +1,4 @@
-import React, {useRef, useCallback} from "react";
+import React from "react";
 
 function PetList({pets, setViewedPet}) {
 
@@ -30,12 +30,7 @@ function PetList({pets, setViewedPet}) {
             {pet.photos[0] && <img src={pet.photos[0].small} onClick={() => handleClick(pet)} alt="pet"/>}
           </div>
           <div className="pet-info">
-            <div className="details">
-              <h4  onClick={() => handleClick(pet)}>{pet.name}</h4>
-              <button className="details-button"
-                      onClick={() => handleClick(pet)}
-              >Details</button>
-            </div>
+            <h4 onClick={() => handleClick(pet)}>{pet.name}</h4>
             <p><b>Age</b>: {pet.age}</p>
             <p><b>Gender</b>: {pet.gender}</p>
             <p><b>Breed</b>: {getPetBreeds(pet.breeds)}</p>
