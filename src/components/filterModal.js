@@ -1,10 +1,8 @@
 import React, {useState} from "react";
-import {requestData} from "../utils/requests";
 import {coats, breeds} from "../utils/petData";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 
-function FilterModal({setFilterModalOpen, formData, setFilteredPets, setHasMore, setLoading, setError,
-                      pageNumber, setPageNumber, setExtraSearchParams}) {
+function FilterModal({setFilterModalOpen, formData, filterPets}) {
   const petType = formData.type === "" ? "Dog" : formData.type;
   const coatsOfAnimal = coats[formData.type] || ['Hairless', 'Short', 'Medium', 'Long', 'Wire', 'Curly'];
   const initialFilterValue = {
@@ -76,25 +74,7 @@ function FilterModal({setFilterModalOpen, formData, setFilteredPets, setHasMore,
     return filterParams;
   }
 
-  const filterPets = async (e) => {
-    e.preventDefault();
-    setFilterModalOpen(false)
-    const filterParams = getFilterParams();
-    setExtraSearchParams(filterParams)
-    setPageNumber(1)
-    setLoading(true);
-    try {
-      const response = await requestData(1, formData.type, formData.location, filterParams);
-      setFilteredPets(response.data.animals);
-      setHasMore(pageNumber < response.data.pagination.total_pages)
-      setLoading(false)
-    } catch (e) {
-      setLoading(false)
-      setError(true)
-    }
-  }
-
-  const handleOnSearch = (string, results) => {
+  const handleOnSearch = (string) => {
     setFilters(prev => ({
       ...prev, breed: string
     }))
@@ -105,6 +85,11 @@ function FilterModal({setFilterModalOpen, formData, setFilteredPets, setHasMore,
       ...prev, breed: item.name
     }))
   };
+
+  const handleFilter = (e) => {
+    filterPets(e, getFilterParams());
+    setFilterModalOpen(false)
+  }
 
   return (
     <div className="overlay">
@@ -182,7 +167,7 @@ function FilterModal({setFilterModalOpen, formData, setFilteredPets, setHasMore,
                   onClick={() => changeFilter("environments", "cats")}>Cats</button>
         </div>
         <div className="button-container">
-          <button className="button filter-button" onClick={e => filterPets(e)}>Search</button>
+          <button className="button filter-button" onClick={e => handleFilter(e)}>Search</button>
         </div>
       </div>
     </div>

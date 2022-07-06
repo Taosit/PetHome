@@ -16,6 +16,115 @@ body {
   box-sizing: border-box;
 }
 
+.button {
+  background-image: linear-gradient(125deg, var(--nav-color) 49%, rgba(133, 0, 91, 0.7) 50%);
+  border-radius: 0.2em;
+  background-size: 300%;
+  background-position: left;
+  border: 1px solid white;
+  color: white;
+  font-size: 1.1em;
+  /*height: 30px;*/
+  padding: 0.2em 0.8em;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+/* Initial Page */
+
+.initial-page {
+  height: 100vh;
+  padding: 2em 0;
+  background-image: url("./assets/background.jpg");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.initial-page-modal {
+  background-color: #312c2e;
+  padding: 2em 0;
+  color: white;
+  width: min(800px, 80%);
+  clip-path: polygon(100% 0, 100% 70%, 85% 100%, 0 100%, 0 0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-text {
+  margin: 0.5em;
+  font-size: large;
+}
+
+.pets-option-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  cursor: pointer;
+}
+
+.pet-option-container {
+  width: 150px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 1s;
+}
+
+.pet-option-container:hover .pet-icon {
+  animation: wiggle forwards 1s;
+}
+
+@keyframes wiggle {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(5deg) scale(1.05);
+  }
+  50% {
+    transform: rotate(-10deg) scale(1.1);
+  }
+  75% {
+    transform: rotate(3deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(0deg) scale(1.1);
+  }
+}
+
+.location-text {
+  margin: 1.5em;
+  display: flex;
+}
+
+.sub-location-text {
+  display: flex;
+  align-items: center;
+  margin: 0.5em 0;
+}
+
+.modal-input {
+  display: inline-block;
+  width: 110px;
+  margin: 0 0.3em;
+  font-size: large;
+}
+
+.launch-search-button {
+  margin: 0.5em 0;
+  font-size: 1.5em;
+}
+
+/* Result Page */
+
 .result-page {
   background-image: linear-gradient(125deg, rgba(255, 105, 180, 0.3), hotpink);
   overflow-y: auto;
@@ -145,21 +254,6 @@ label {
 
 input {
   width: 200px;
-}
-
-.button {
-  background-image: linear-gradient(125deg, var(--nav-color) 49%, rgba(133, 0, 91, 0.7) 50%);
-  border-radius: 0.2em;
-  background-size: 300%;
-  background-position: left;
-  border: 1px solid white;
-  color: white;
-  font-size: 1.1em;
-  height: 30px;
-  padding: 0.2em 0.8em;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.2s;
 }
 
 .button:hover {
@@ -420,7 +514,8 @@ li p {
 .error-container {
   margin: 0.5em auto;
   padding: 0.5em;
-  border: 1px solid black;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 2px solid var(--nav-color);
   border-radius: 0.5em;
   width: min(500px, 90%);
   color: darkred;
@@ -507,6 +602,18 @@ li p {
 }
 
 @media (max-width: 650px) {
+  .location-text {
+    flex-direction: column;
+    margin: 1em;
+  }
+  .initial-page-modal {
+    width: 90%;
+    padding: 3em 0;
+    clip-path: polygon(100% 0, 100% 80%, 75% 100%, 0 100%, 0 0);
+  }
+  .pet-option-container {
+    margin-top: 1em;
+  }
   .all-pets {
     margin: 0 0.5em;
     display: block;
@@ -544,6 +651,22 @@ li p {
   }
   .result-page::-webkit-scrollbar {
     width: 10px;
+  }
+}
+
+@media (max-width: 470px) {
+  .location-text p {
+    font-size: 0.9em;
+  }
+  .launch-search-button {
+    font-size: 1.2em;
+  }
+  .pet-option-container {
+    width: 120px;
+    height: 120px;
+  }
+  .pet-icon {
+    width: 65px;
   }
 }
 
