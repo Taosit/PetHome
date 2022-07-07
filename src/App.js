@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef} from "react";
 import {requestData} from "./utils/requests";
 import SearchPage from "./components/SearchPage";
 import InitialPage from "./components/InitialPage";
+import Div100vh from "react-div-100vh";
 
 function App() {
   const [pets, setPets] = useState(null)
@@ -36,11 +37,15 @@ function App() {
   }
 
   return (onInitialPage ?
+      <Div100vh>
       <InitialPage formData={formData} setFormData={setFormData} setOnInitialPage={setOnInitialPage} handleSearch={handleSearch}/>
+      </Div100vh>
       :
+      <Div100vh>
       <SearchPage pets={pets} setPets={setPets} loading={loading} setLoading={setLoading} error={error} setError={setError}
                     hasMore={hasMore} setHasMore={setHasMore} pageNumber={pageNumber} setPageNumber={setPageNumber}
                     formData={formData} setFormData={setFormData} handleSearch={handleSearch}/>
+      </Div100vh>
   );
 }
 

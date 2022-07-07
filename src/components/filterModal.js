@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {coats, breeds} from "../utils/petData";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
+import Div100vh from "react-div-100vh";
 
 function FilterModal({setFilterModalOpen, formData, filterPets}) {
   const petType = formData.type === "" ? "Dog" : formData.type;
@@ -92,6 +93,7 @@ function FilterModal({setFilterModalOpen, formData, filterPets}) {
   }
 
   return (
+    <Div100vh>
     <div className="overlay">
       <div className="filter-modal">
         <span className="close"
@@ -171,6 +173,7 @@ function FilterModal({setFilterModalOpen, formData, filterPets}) {
         </div>
       </div>
     </div>
+    </Div100vh>
   );
 }
 

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import catIcon from "../assets/cat.png"
 import dogIcon from "../assets/dog.png"
-import background from "../assets/background.jpg"
+import Div100vh from "react-div-100vh";
 
 function InitialPage({formData, setFormData, setOnInitialPage, handleSearch}) {
   const [city, setCity] = useState("");
@@ -31,6 +31,7 @@ function InitialPage({formData, setFormData, setOnInitialPage, handleSearch}) {
   }
 
   return (
+    <Div100vh>
     <div className="initial-page">
       <div className="initial-page-modal">
         <h1>Pet Home</h1>
@@ -65,6 +66,7 @@ function InitialPage({formData, setFormData, setOnInitialPage, handleSearch}) {
         </div>
       </div>
     </div>
+    </Div100vh>
   );
 }
 

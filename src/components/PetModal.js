@@ -26,7 +26,7 @@ function PetModal({viewedPet, setViewedPet}) {
         <h1>{viewedPet.name}</h1>
         <p className="date">Published on {viewedPet.published_at.split("T")[0]}</p>
         <div className="photo-container">
-          <img src={viewedPet.photos[0].medium} alt="pet"/>
+          {viewedPet.photos[0] && <img src={viewedPet.photos[0].medium} alt="pet"/>}
         </div>
         <div className="basic-info">
           <div className="attribute"><b>Breed</b>: {getPetBreeds(viewedPet.breeds)}</div>
