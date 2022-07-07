@@ -25,7 +25,7 @@ function Search({formData, setFormData, containerRef, handleSearch}) {
   return (
     <form className="search-bar" onSubmit={(e) => handleSearch(e)}>
       <div className="title">
-        <h2 className="brand-name">Find A Pet</h2>
+        <h2 className="brand-name">Pet Home</h2>
       </div>
       <div className="form-body" ref={formRef}>
         <div className="input-group">

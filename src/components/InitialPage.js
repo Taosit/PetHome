@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import catIcon from "../assets/cat.png"
 import dogIcon from "../assets/dog.png"
+import background from "../assets/background.jpg"
 
 function InitialPage({formData, setFormData, setOnInitialPage, handleSearch}) {
   const [city, setCity] = useState("");
@@ -32,6 +33,7 @@ function InitialPage({formData, setFormData, setOnInitialPage, handleSearch}) {
   return (
     <div className="initial-page">
       <div className="initial-page-modal">
+        <h1>Pet Home</h1>
         <p className="search-text">I'm looking for a</p>
         <div className="pets-option-container">
           <div className="pet-option-container" onClick={() => setFormData(prev => ({...prev, type: "Cat"}))}

@@ -100,9 +100,12 @@ function SearchPage({pets, setPets, loading, setLoading, error, setError, hasMor
             </>}
         </div>
         <div className="content">
-          {loading && <div className="loading-page"><div className="loader"></div></div>}
-          {error.hasError && <ErrorMessage message={error.errorMessage} />}
-          {pets && !error.hasError && <PetList pets={filteredPets || pets} hasMore={hasMore} setViewedPet={setViewedPet} loading={loading}/>}
+          {loading ? <div className="loading-page"><div className="loader"></div></div>
+          :
+            error.hasError ? <ErrorMessage message={error.errorMessage} />
+              :
+              <PetList pets={filteredPets || pets} hasMore={hasMore} setViewedPet={setViewedPet} loading={loading}/>
+          }
           {viewedPet && <PetModal viewedPet={viewedPet} setViewedPet={setViewedPet}/>}
           {filterModalOpen && <FilterModal setFilterModalOpen={setFilterModalOpen} formData={formData} filterPets={filterPets}/>}
         </div>
