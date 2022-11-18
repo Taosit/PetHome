@@ -1,5 +1,8 @@
 import React from "react";
 import htmlEntities from "../utils/htmlDecoder";
+import checkmark from "../assets/checkmark.png";
+import error from "../assets/error.png";
+import petFootprint from "../assets/claw.png";
 
 function PetModal({ viewedPet, setViewedPet }) {
 	const getPetBreeds = ({ primary, secondary, mixed, unknown }) => {
@@ -16,45 +19,38 @@ function PetModal({ viewedPet, setViewedPet }) {
 		return `${address1} ${address2}, ${city}, ${state}, ${country}`;
 	};
 
+	const capitablize = (str) => {
+		return str.replace(str[0], str[0].toUpperCase());
+	}
+
 	return (
 		<div className="overlay">
 			<div className="pet-modal">
 				<span className="close" onClick={() => setViewedPet(null)}>
 					&times;
 				</span>
-				<h1>{viewedPet.name}</h1>
-				<p className="date">
-					Published on {viewedPet.published_at.split("T")[0]}
-				</p>
+				<h1 className="pet-name">{viewedPet.name}</h1>
+				<div className="status">
+					<div className="status-img-container">
+						<img src={viewedPet.status === "adoptable"? checkmark : error} alt="status" />
+					</div>
+					<p className="status-label">{capitablize(viewedPet.status)}</p>
+				</div>
 				<div className="photo-container">
 					{viewedPet.photos[0] && (
 						<img src={viewedPet.photos[0].medium} alt="pet" />
 					)}
 				</div>
 				<div className="basic-info">
-					<div className="attribute">
-						<b>Breed</b>: {getPetBreeds(viewedPet.breeds)}
+					<div className="breed-name">
+						{getPetBreeds(viewedPet.breeds)}
+						<div className="claw-container">
+							<img src={petFootprint} alt="pet footptint" />
+						</div>
 					</div>
-					{viewedPet.size && (
-						<div className="attribute">
-							<b>Size</b>: {viewedPet.size}
-						</div>
-					)}
-					{viewedPet.gender && (
-						<div className="attribute">
-							<b>Gender</b>: {viewedPet.gender}
-						</div>
-					)}
-					{viewedPet.age && (
-						<div className="attribute">
-							<b>Age</b>: {viewedPet.age}
-						</div>
-					)}
-					{viewedPet.coat && (
-						<div className="attribute">
-							<b>Coat</b>: {viewedPet.coat}
-						</div>
-					)}
+					<div className="age-and-gender">
+						{viewedPet.age} | {viewedPet.gender}
+					</div>
 				</div>
 				<div className="environment">
 					{viewedPet.environment.children && (
@@ -67,34 +63,24 @@ function PetModal({ viewedPet, setViewedPet }) {
 						<span className="friendly-tag">Dog-friendly</span>
 					)}
 				</div>
-				<div>
-					<b>Status</b>: {viewedPet.status}
-				</div>
 				{viewedPet.description && (
-					<div id="descriptions">
-						<b>Descriptions</b>: {htmlEntities(viewedPet.description)}
-					</div>
+					<div className="descriptions">{htmlEntities(viewedPet.description)}</div>
 				)}
 				<div className="contact-info">
 					<h4>Contact</h4>
-					<ul>
-						{viewedPet.contact.email && (
-							<li>
-								<b>Email</b>: {viewedPet.contact.email}
-							</li>
-						)}
+					<ul className="contact-list">
 						{viewedPet.contact.phone && (
-							<li>
-								<b>Phone</b>: {viewedPet.contact.phone}
-							</li>
+							<li>{viewedPet.contact.phone}</li>
+						)}
+						{viewedPet.contact.email && (
+							<li>{viewedPet.contact.email}</li>
 						)}
 						{viewedPet.contact.address && (
-							<li>
-								<b>Address</b>: {formatAddress(viewedPet.contact.address)}
-							</li>
+							<li>{formatAddress(viewedPet.contact.address)}</li>
 						)}
 					</ul>
 				</div>
+				<div className="date">Published on {viewedPet.published_at.split("T")[0]}</div>
 			</div>
 		</div>
 	);

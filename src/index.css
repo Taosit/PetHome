@@ -3,6 +3,7 @@
 :root {
 	--nav-color: rgba(133, 0, 91, 1);
 	--option-color: #ab0075;
+	--gray: #636363;
 	--stroke-padding: 4px;
 }
 
@@ -464,7 +465,7 @@ input {
 	left: 0;
 	bottom: 0;
 	right: 0;
-	background-color: rgba(0, 0, 0, 0.2);
+	background-color: rgba(201, 201, 201, 0.7);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -477,10 +478,12 @@ input {
 	border-radius: 0.5em;
 	overflow-y: auto;
 	position: relative;
-	padding: 0 1em;
+	padding: 1em 2em;
+	border: 1px solid #C9C9C9;
 	display: flex;
 	flex-direction: column;
 	overflow-x: hidden;
+	box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.25);
 }
 
 .pet-info b,
@@ -509,17 +512,22 @@ input {
 	font-size: 2em;
 	font-weight: bold;
 	right: 10px;
+	top: -1px;
 	cursor: pointer;
 	color: darkred;
 }
 
-.pet-modal > * {
-	margin-bottom: 1em;
+.pet-name {
+	color: var(--gray);
+	margin-bottom: 0.5em;
 }
 
-.date {
+.status {
 	align-self: flex-end;
-	color: #505050;
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	color: #16926D;
 }
 
 .photo-container {
@@ -533,16 +541,43 @@ input {
 }
 
 .basic-info {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
+	margin-top: 1.5em;
 }
 
-.attribute {
-	margin: 0.3em 0;
+.breed-name {
+	font-size: 32px;
+	margin: 8px 0;
+	position: relative;
 }
 
-li p {
-	max-width: 100%;
+.claw-container {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 0;
+	width: 62px;
+	aspect-ratio: 1 / 1;
+	opacity: 50%;
+}
+
+.claw-container img {
+	width: 100%;
+	object-fit: cover;
+}
+
+.age-and-gender {
+	margin: 8px 0;
+	color: var(--gray);
+}
+
+.environment {
+	margin-top: 4px;
+	display: flex;
+	gap: 4px;
+}
+
+.descriptions {
+	margin: 0.5em 0 1em 0;
 }
 
 .friendly-tag {
@@ -550,11 +585,72 @@ li p {
 	background-color: rgba(144, 238, 144, 0.55);
 	padding: 0.1em 0.5em;
 	border-radius: 1em;
-	margin: 0.2em 0.5em 0.2em 0;
+	margin: 8px 0;
 }
 
 .contact-info h4 {
-	color: #2a2a2a;
+	text-align: center;
+	color: var(--gray);
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-weight: 400;
+	margin: 1.5em 0;
+	position: relative;
+}
+
+.contact-info h4::before {
+	content: "";
+	position: absolute;
+	width: 30%;
+	height: 1px;
+	left: 0;
+	top: 50%;
+	background-color: #C9C9C9;
+}
+
+.contact-info h4::after {
+	content: "";
+	position: absolute;
+	width: 30%;
+	height: 1px;
+	right: 0;
+	top: 50%;
+	background-color: #C9C9C9;
+}
+
+.contact-list {
+	list-style: none;
+	padding: 0;
+}
+
+.contact-list li {
+	position: relative;
+	margin: 12px 0 12px 30px;
+}
+
+.contact-list li::before {
+	content: "";
+	position: absolute;
+	left: -30px;
+}
+
+.contact-list li:nth-of-type(1)::before {
+	content: url("assets/phone.svg");
+}
+
+.contact-list li:nth-of-type(2)::before {
+	content: url("assets/mail.svg");
+}
+
+.contact-list li:nth-of-type(3)::before {
+	content: url("assets/address.svg");
+}
+
+.date {
+	color: var(--gray);
+	margin-top: 1em;
+	display: flex;
+	justify-content: end;
 }
 
 /* Filter Modal */
@@ -570,11 +666,16 @@ li p {
 	display: flex;
 	flex-direction: column;
 	overflow-x: hidden;
+	box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.25);
 }
 
 .fake-margin {
 	height: 10px;
 	width: 100%;
+}
+
+.group-title {
+	color: var(--gray);
 }
 
 .option {
