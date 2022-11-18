@@ -258,6 +258,7 @@ h1 {
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
+	z-index: 1;
 }
 
 .filter-container-image {
@@ -434,27 +435,65 @@ input {
 .pet-container {
 	display: flex;
 	background-color: white;
-	align-items: center;
-	padding: 0.3em;
+	align-items: flex-start;
+	gap: 1em;
+	padding: 1em 12px;
 	border-radius: 1em;
 	box-shadow: 2px 5px 5px 1px rgba(183, 0, 105, 0.3);
+	position: relative;
 }
 
 .small-img-container {
-	margin: 0.2em 1em 0.2em 0.2em;
+	height: 133px;
+	width: 100px;
+	flex-shrink: 0;
 }
 
 .small-img-container img {
 	cursor: pointer;
-	border-radius: 0.8em;
+	border-radius: 0.5em;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
 }
 
 .pet-container h4 {
+	margin-top: 0;
+	color: var(--gray);
 	cursor: pointer;
 }
 
 .pet-container h4:hover {
 	text-decoration: underline;
+}
+
+.pet-info .breed {
+	font-size: 20px;
+}
+
+.status-container {
+	position: absolute;
+	right: 8px;
+	bottom: 4px;
+}
+
+.status-container img {
+	cursor: pointer;
+}
+
+.status-prompt {
+	position: absolute;
+	bottom: 6px;
+	right: 28px;
+	padding: 2px 8px;
+	border-radius: 4px;
+	box-shadow: 0 0 5px rgba(114, 0, 99, 0.4);
+	display: none;
+	color: var(--gray);
+}
+
+.status-container:has(img:hover) .status-prompt {
+	display: block;
 }
 
 /* Pet Page */
@@ -469,6 +508,7 @@ input {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	z-index: 10;
 }
 
 .pet-modal {
@@ -530,6 +570,16 @@ input {
 	color: #16926D;
 }
 
+.status-img-container {
+	width: 20px;
+	aspect-ratio: 1 / 1;
+}
+
+.status-img-container img {
+	width: 100%;
+	object-fit: cover;
+}
+
 .photo-container {
 	max-width: 100%;
 	align-self: center;
@@ -557,7 +607,7 @@ input {
 	right: 0;
 	width: 62px;
 	aspect-ratio: 1 / 1;
-	opacity: 50%;
+	opacity: 40%;
 }
 
 .claw-container img {
@@ -619,11 +669,12 @@ input {
 }
 
 .contact-list {
-	list-style: none;
+	list-style-type: none;
 	padding: 0;
 }
 
 .contact-list li {
+	list-style: none;
 	position: relative;
 	margin: 12px 0 12px 30px;
 }
@@ -837,31 +888,17 @@ input {
 	}
 	.pet-modal h1 {
 		margin: 0.5em 0;
+		font-size: 20px;
 	}
-	.pet-modal .date {
-		margin: 0.2em 0;
+	.status-img-container {
+		width: 16px;
+		height: 16px;
 	}
-	ul {
-		padding-left: 0;
+	.status-label {
+		font-size: 14px;
 	}
-	li {
-		list-style: none;
-		position: relative;
-		padding-left: 1em;
-	}
-	li::before {
-		position: absolute;
-		left: 2px;
-		transform: translate(2px, 7px);
-		content: "";
-		display: inline-block;
-		width: 4px;
-		height: 4px;
-		border-radius: 50%;
-		background-color: black;
-	}
-	.basic-info {
-		grid-template-columns: 1fr;
+	.breed-name {
+		font-size: 24px;
 	}
 	.result-page::-webkit-scrollbar {
 		width: 10px;

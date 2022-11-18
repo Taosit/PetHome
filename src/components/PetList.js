@@ -1,4 +1,6 @@
 import React from "react";
+import checkmark from "../assets/checkmark.png";
+import error from "../assets/error.png";
 
 function PetList({ pets, setViewedPet }) {
 	const getPetBreeds = ({ primary, secondary, mixed, unknown }) => {
@@ -21,6 +23,10 @@ function PetList({ pets, setViewedPet }) {
 		);
 	}
 
+	const capitablize = (str) => {
+		return str.replace(str[0], str[0].toUpperCase());
+	}
+
 	return (
 		<div className="all-pets">
 			{pets.map((pet, i) => (
@@ -36,18 +42,12 @@ function PetList({ pets, setViewedPet }) {
 					</div>
 					<div className="pet-info">
 						<h4 onClick={() => handleClick(pet)}>{pet.name}</h4>
-						<p>
-							<b>Age</b>: {pet.age}
-						</p>
-						<p>
-							<b>Gender</b>: {pet.gender}
-						</p>
-						<p>
-							<b>Breed</b>: {getPetBreeds(pet.breeds)}
-						</p>
-						<p>
-							<b>Status</b>: {pet.status}
-						</p>
+						<div className="breed">{getPetBreeds(pet.breeds)}</div>
+						<div className="age-and-gender">{pet.age} | {pet.gender}</div>
+						<div className="status-container">
+							<div className="status-prompt">{capitablize(pet.status)}</div>
+							<img src={pet.status === "adoptable"? checkmark : error} alt="status" />
+						</div>
 					</div>
 				</div>
 			))}
