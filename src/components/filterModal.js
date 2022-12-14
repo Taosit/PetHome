@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { coats, breeds } from "../utils/petData";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import Div100vh from "react-div-100vh";
+import FocusTrap from 'focus-trap-react';
 
 function FilterModal({ setFilterModalOpen, formData, filterPets }) {
 	const petType = formData.type === "" ? "Dog" : formData.type;
@@ -104,8 +105,14 @@ function FilterModal({ setFilterModalOpen, formData, filterPets }) {
 	return (
 		<Div100vh>
 			<div className="overlay">
+				<FocusTrap>
 				<div className="filter-modal">
-					<span className="close" onClick={() => setFilterModalOpen(false)}>
+					<span className="close" 
+						tabIndex="0"
+						role="button"
+						aria-label="close"
+						onKeyDown={e => e.key === "Enter" && setFilterModalOpen(false)}
+						onClick={() => setFilterModalOpen(false)}>
 						&times;
 					</span>
 					<div className="radio-group">
@@ -279,6 +286,7 @@ function FilterModal({ setFilterModalOpen, formData, filterPets }) {
 						</button>
 					</div>
 				</div>
+				</FocusTrap>
 			</div>
 		</Div100vh>
 	);

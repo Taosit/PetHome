@@ -52,6 +52,9 @@ function InitialPage({ formData, setFormData, error, loading, handleSearch }) {
 					<div className="pets-option-container">
 						<div
 							className="pet-option-container"
+							tabIndex="0"
+							role="button"
+							onKeyDown={e => e.key === "Enter" && setFormData(prev => ({ ...prev, type: "Cat" }))}
 							onClick={() => setFormData(prev => ({ ...prev, type: "Cat" }))}
 							style={{
 								borderColor:
@@ -68,6 +71,9 @@ function InitialPage({ formData, setFormData, error, loading, handleSearch }) {
 						</div>
 						<div
 							className="pet-option-container"
+							tabIndex="0"
+							role="button"
+							onKeyDown={e => e.key === "Enter" && setFormData(prev => ({ ...prev, type: "Dog" }))}
 							onClick={() => setFormData(prev => ({ ...prev, type: "Dog" }))}
 							style={{
 								borderColor:
@@ -99,6 +105,7 @@ function InitialPage({ formData, setFormData, error, loading, handleSearch }) {
 								className="modal-input"
 								type="text"
 								value={state}
+								onKeyDown={e => e.key === "Enter" && launchSearch(e)}
 								onChange={e => setState(e.target.value)}
 							/>
 							<p className="search-text">(State/Province).</p>

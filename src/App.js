@@ -10,7 +10,7 @@ function App() {
 	const [error, setError] = useState({ hasError: false, errorMessage: "" });
 	const [hasMore, setHasMore] = useState(true);
 	const [pageNumber, setPageNumber] = useState(1);
-	const [formData, setFormData] = useState({ type: "", location: "" });
+	const [formData, setFormData] = useState({ type: "Cat", location: "" });
 	const [onInitialPage, setOnInitialPage] = useState(true);
 
 	const handleSearch = async e => {

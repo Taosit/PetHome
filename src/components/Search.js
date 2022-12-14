@@ -32,7 +32,10 @@ function Search({
 	return (
 		<form className="search-bar" onSubmit={e => handleSearch(e)}>
 			<div className="title">
-				<h2 className="brand-name" onClick={() => setOnInitialPage(true)}>
+				<h2 className="brand-name" 
+					tabIndex="0"
+					onKeyDown={e => e.key === "Enter" && setOnInitialPage(true)}
+					onClick={() => setOnInitialPage(true)}>
 					Pet Home
 				</h2>
 			</div>

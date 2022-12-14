@@ -136,13 +136,16 @@ function SearchPage({
               <img
                 src={settingContainerIcon}
                 className="filter-container-image"
+                tabIndex="0"
                 alt="filter"
+                onKeyDown={e => e.key === "Enter" && setFilterModalOpen(true)}
                 onClick={() => setFilterModalOpen(true)}
                 hidden={!(pets || filteredPets)}
               />
               <img
                 src={settingIcon}
                 className="filter-image"
+                alt=""
                 hidden={!(pets || filteredPets)}
                 onClick={() => setFilterModalOpen(true)}
               />

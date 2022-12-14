@@ -30,7 +30,10 @@ function PetList({ pets, setViewedPet }) {
 	return (
 		<div className="all-pets">
 			{pets.map((pet, i) => (
-				<div className="pet-container" key={i}>
+				<div className="pet-container"
+					tabIndex="0"
+					onKeyDown={e => e.key === "Enter" && handleClick(pet)}
+			    key={i}>
 					<div className="small-img-container">
 						{pet.photos[0] && (
 							<img
