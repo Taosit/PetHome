@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { requestData } from "./utils/requests";
 import SearchPage from "./components/SearchPage";
 import InitialPage from "./components/InitialPage";

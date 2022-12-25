@@ -20,7 +20,7 @@ function Search({
 			formRef.current.classList.remove("form-body-show");
 			containerRef.current.style.paddingTop = "0";
 		}
-	}, [showSearchBar]);
+	}, [showSearchBar, formRef, containerRef]);
 
 	const handleChange = e => {
 		setFormData(prev => ({

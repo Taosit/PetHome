@@ -1,8 +1,8 @@
 import React from "react";
 import htmlEntities from "../utils/htmlDecoder";
-import checkmark from "../assets/checkmark.png";
-import error from "../assets/error.png";
-import petFootprint from "../assets/claw.png";
+import checkmark from "../assets/checkmark.svg";
+import error from "../assets/warning.svg";
+import petFootprint from "../assets/paw.svg";
 import FocusTrap from 'focus-trap-react';
 
 function PetModal({ viewedPet, setViewedPet }) {

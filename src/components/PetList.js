@@ -1,6 +1,8 @@
 import React from "react";
-import checkmark from "../assets/checkmark.png";
-import error from "../assets/error.png";
+import checkmark from "../assets/checkmark.svg";
+import error from "../assets/warning.svg";
+import catHead from "../assets/cat-head.svg";
+import dogHead from "../assets/dog-head.svg";
 
 function PetList({ pets, setViewedPet }) {
 	const getPetBreeds = ({ primary, secondary, mixed, unknown }) => {
@@ -10,6 +12,8 @@ function PetList({ pets, setViewedPet }) {
 		if (primary) return `${primary} mixed`;
 		return "Mixed";
 	};
+
+	console.log(pets);
 
 	const handleClick = pet => {
 		setViewedPet(pet);
@@ -35,13 +39,11 @@ function PetList({ pets, setViewedPet }) {
 					onKeyDown={e => e.key === "Enter" && handleClick(pet)}
 			    key={i}>
 					<div className="small-img-container">
-						{pet.photos[0] && (
-							<img
-								src={pet.photos[0].small}
-								onClick={() => handleClick(pet)}
-								alt="pet"
-							/>
-						)}
+					<img
+						src={pet.photos?.[0]?.small? pet.photos[0].small : pet.type === "Dog"? dogHead : catHead}
+						onClick={() => handleClick(pet)}
+						alt="pet"
+					/>
 					</div>
 					<div className="pet-info">
 						<h4 onClick={() => handleClick(pet)}>{pet.name}</h4>

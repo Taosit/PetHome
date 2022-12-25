@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { requestData } from "../utils/requests";
 import Search from "./Search";
 import settingContainerIcon from "../assets/setting-container.png";
-import settingIcon from "../assets/settings.png";
+import settingIcon from "../assets/settings.svg";
 import ErrorMessage from "./ErrorMessage";
 import PetList from "./PetList";
 import PetModal from "./PetModal";
@@ -77,12 +77,10 @@ function SearchPage({
   const handleScroll = (e) => {
     if (loading) return;
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
-    if (scrollHeight - scrollTop - clientHeight < 200) {
-      setLoadingMore(true);
-    }
     if (scrollHeight - scrollTop - clientHeight < 100) {
       if (!hasMore || cooldown) return;
       setCooldown(true);
+      setLoadingMore(true);
       setTimeout(() => {
         setCooldown(false);
       }, 1000);

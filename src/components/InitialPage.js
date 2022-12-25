@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import catIcon from "../assets/cat.png";
-import dogIcon from "../assets/dog.png";
+import catIcon from "../assets/cat.svg";
+import dogIcon from "../assets/dog.svg";
 import Div100vh from "react-div-100vh";
 
 function InitialPage({ formData, setFormData, error, loading, handleSearch }) {
@@ -29,9 +29,7 @@ function InitialPage({ formData, setFormData, error, loading, handleSearch }) {
 
 	const getStyle = petOption => {
 		const transform = formData.type === petOption ? "scale(1.1)" : "scale(1)";
-		const filter =
-			formData.type === petOption ? "brightness(1.2)" : "brightness(1)";
-		return { transform, filter };
+		return {transform};
 	};
 
 	const formatString = str => {
