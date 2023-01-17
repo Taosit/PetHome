@@ -90,23 +90,29 @@ function InitialPage({ formData, setFormData, error, loading, handleSearch }) {
 					<div className="location-text">
 						<div className="sub-location-text">
 							<p className="search-text">In</p>
+							<label htmlFor="city" className="visually-hidden">City</label>
 							<input
+								id="city"
 								className="modal-input"
+								placeholder="City"
 								type="text"
 								value={city}
 								onChange={e => setCity(e.target.value)}
 							/>
-							<p className="search-text">(City),</p>
+							<p className="search-text">,</p>
 						</div>
 						<div className="sub-location-text">
+							<label htmlFor="state" className="visually-hidden">State or Province</label>
 							<input
+								id="state"
 								className="modal-input"
+								placeholder="State/Province"
 								type="text"
 								value={state}
 								onKeyDown={e => e.key === "Enter" && launchSearch(e)}
 								onChange={e => setState(e.target.value)}
 							/>
-							<p className="search-text">(State/Province).</p>
+							<p className="search-text">.</p>
 						</div>
 					</div>
 					<div className="launch-search-button-container">

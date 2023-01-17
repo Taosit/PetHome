@@ -35,10 +35,21 @@ body {
 	transition: 0.2s;
 }
 
+.visually-hidden {
+	position: absolute;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	width: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
+}
+
 /* Initial Page */
 
 .initial-page {
-	height: 100vh;
+	height: 100dvh;
 	padding: 2em 0;
 	background-color: #f3d8e3;
 	display: flex;
@@ -97,7 +108,6 @@ body {
 }
 
 .search-text {
-	margin: 0.5em;
 	font-size: large;
 }
 
@@ -148,14 +158,26 @@ body {
 }
 
 .location-text {
-	margin: 1.5em;
+	width: 100%;
+	padding: 1em;
 	display: flex;
+	justify-content: center;
+	gap: 1em;
 }
 
 .sub-location-text {
 	display: flex;
-	align-items: center;
-	margin: 0.5em 0;
+	gap: 4px;
+}
+
+.sub-location-text input {
+	width: 200px;
+}
+
+@media (max-width: 650px) {
+	.sub-location-text input {
+		flex-grow: 1;
+	}
 }
 
 .modal-input {
@@ -213,7 +235,7 @@ body {
 	width: min(80%, 1100px);
 	margin: 0 auto;
 	position: relative;
-	height: 100vh;
+	height: 100dvh;
 }
 
 .result-page::-webkit-scrollbar {
