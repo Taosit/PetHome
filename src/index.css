@@ -49,7 +49,7 @@ body {
 /* Initial Page */
 
 .initial-page {
-	height: 100dvh;
+	height: 100vh;
 	padding: 2em 0;
 	background-color: #f3d8e3;
 	display: flex;
@@ -235,7 +235,16 @@ body {
 	width: min(80%, 1100px);
 	margin: 0 auto;
 	position: relative;
-	height: 100dvh;
+	height: 100vh;
+}
+
+@supports(height: 100dvh) {
+	.container {
+		height: 100dvh;
+	}
+	.initial-page {
+		height: 100dvh;
+	}
 }
 
 .result-page::-webkit-scrollbar {
